@@ -1,0 +1,26 @@
+<div *ngIf="url.length > 0" class="generated-link">
+  <h2 class="title">Este é seu link:</h2>
+
+  <div class="box-link">
+    <p class="short-link">{{ url }}</p>
+  </div>
+</div>
+
+<section class="box-form">
+  <h1 class="title">Encurtador de URL</h1>
+  <form #form="ngForm" class="form" (ngSubmit)="generate(form)">
+    <div class="control">
+      <input
+        type="text"
+        name="originalUrl"
+        placeholder="Digite a URL para encurtar..."
+        #short
+        [(ngModel)]="link.originalUrl"
+      />
+    </div>
+
+    <button class="button-generate">
+      {{ generating ? "Gerando..." : "Gerar" }}
+    </button>
+  </form>
+</section>
