@@ -1,11 +1,12 @@
-const { Link } = require('./../models/index');
+const { Link } = require('../entities/index');
 const generateShort = require('./../utils/generateShort');
+import Response from './../models/Response';
 
 class LinkController {
   async index(req, res) {
     try {
       const links = await Link.findAll();
-      return res.status(200).json(links);
+      return res.status(200).json(new Response(200, 'sucesso', links));
     } catch (err) {
       console.log(err.message);
     }
@@ -15,11 +16,13 @@ class LinkController {
     try {
       const { short } = req.params;
 
-      const originalUrl = await Link.findOne({
+      const link = await Link.findOne({
         where: { shortenedUrl: short },
       });
 
-      res.status(200).json({ url: originalUrl });
+      res
+        .status(200)
+        .json(new Response(200, 'sucesso', { url: link.originalUrl }));
     } catch (err) {
       console.log(err);
     }
@@ -33,7 +36,7 @@ class LinkController {
 
       const link = await Link.create({ originalUrl, shortenedUrl });
 
-      return res.status(201).json(link);
+      return res.status(201).json(new Response(201, 'sucesso', link));
     } catch (err) {
       console.log(err);
     }
