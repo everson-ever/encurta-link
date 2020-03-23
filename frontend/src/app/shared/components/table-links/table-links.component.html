@@ -8,39 +8,17 @@
             <th scope="col">#</th>
             <th scope="col">URL original</th>
             <th scope="col">URL encurtada</th>
-            <th scope="col">Local</th>
+            <th scope="col">Visualizações</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>https://google.com</td>
-            <td>http://localhost:4200/sds4d</td>
-            <td>Rio Grande do Norte</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>https://google.com</td>
-            <td>http://localhost:4200/sds4d</td>
-            <td>Rio Grande do Norte</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>https://google.com</td>
-            <td>http://localhost:4200/sds4d</td>
-            <td>Rio Grande do Norte</td>
-          </tr>
-          <tr>
-            <th scope="row">4</th>
-            <td>https://google.com</td>
-            <td>http://localhost:4200/sds4d</td>
-            <td>Rio Grande do Norte</td>
-          </tr>
-          <tr>
-            <th scope="row">5</th>
-            <td>https://google.com</td>
-            <td>http://localhost:4200/sds4d</td>
-            <td>Rio Grande do Norte</td>
+          <tr *ngFor="let link of links; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ link.originalUrl }}</td>
+            <td>
+              {{ urlShort(this.apiService.getOwnUrl(), link.shortenedUrl) }}
+            </td>
+            <td>{{ link.views }}</td>
           </tr>
         </tbody>
       </table>

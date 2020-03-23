@@ -14,13 +14,22 @@ import { LinkService } from '../../services/link.service';
 export class GenerateLinkComponent implements OnInit {
 	public linkPost: LinkPost = new LinkPost();
 	public link: Link = new Link();
+	public links: Link[] = [];
 	public generating = false;
 	public url = '';
 	public textCopy = false;
 
 	constructor(private linkService: LinkService, private apiService: ApiService) {}
 
-	ngOnInit(): void {}
+	ngOnInit(): void {
+		this.index();
+	}
+
+	public index() {
+		this.linkService.index().subscribe((response: Response) => {
+			this.links = response.body;
+		});
+	}
 
 	public generate(form: NgForm) {
 		this.generating = true;
