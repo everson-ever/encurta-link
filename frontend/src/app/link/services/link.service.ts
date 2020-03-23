@@ -10,6 +10,10 @@ import { LinkPost } from '../model/LinkPost';
 export class LinkService {
 	constructor(private http: HttpClient, private apiService: ApiService) {}
 
+	public index(): Observable<any> {
+		return this.http.get(`${this.apiService.getUrl()}/links`);
+	}
+
 	public show(short: string): Observable<any> {
 		return this.http.get(`${this.apiService.getUrl()}/links/${short}`);
 	}
