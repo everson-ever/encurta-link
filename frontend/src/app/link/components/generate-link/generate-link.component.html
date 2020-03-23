@@ -1,26 +1,77 @@
-<div *ngIf="url.length > 0" class="generated-link">
-  <h2 class="title">Este é seu link:</h2>
-
-  <div class="box-link">
-    <p class="short-link">{{ url }}</p>
+<div class="container h-100">
+  <div class="row h-100 justify-content-center align-items-center">
+    <div class="col-lg-8">
+      <form #form="ngForm" class="mt-5" (ngSubmit)="generate(form)">
+        <div class="form-group">
+          <input
+            class="form-control form-control-lg mb-2"
+            id="url"
+            type="text"
+            name="originalUrl"
+            placeholder="Digite a URL para encurtar..."
+            #short
+            [(ngModel)]="link.originalUrl"
+          />
+          <div class="text-right">
+            <button
+              type="submit"
+              class="btn btn-secondary btn-lg"
+              data-toggle="modal"
+              data-target="#modalLink"
+            >
+              {{ generating ? "Gerando..." : "Gerar link" }}
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
 
-<section class="box-form">
-  <h1 class="title">Encurtador de URL</h1>
-  <form #form="ngForm" class="form" (ngSubmit)="generate(form)">
-    <div class="control">
-      <input
-        type="text"
-        name="originalUrl"
-        placeholder="Digite a URL para encurtar..."
-        #short
-        [(ngModel)]="link.originalUrl"
-      />
+<div
+  class="modal fade"
+  id="modalLink"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="modalLinkLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalLinkLabel">
+          Seu link encurtado foi gerado
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input
+          type="text"
+          class="form-control"
+          ngClass="{'bg-primary', textCopy, 'text-white', textCopy}"
+          #inputURL
+          disabled
+          [value]="url || 'Estamos gerando sua url...'"
+        />
+        <p *ngIf="textCopy" class="text-primary">URL copiada</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Fechar
+        </button>
+        <button type="button" class="btn btn-primary" (click)="copy(inputURL)">
+          Copiar URL
+        </button>
+      </div>
     </div>
+  </div>
+</div>
 
-    <button class="button-generate">
-      {{ generating ? "Gerando..." : "Gerar" }}
-    </button>
-  </form>
-</section>
+<app-table-links></app-table-links>
