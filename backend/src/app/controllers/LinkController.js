@@ -20,6 +20,9 @@ class LinkController {
         where: { shortenedUrl: short },
       });
 
+      await link.views++;
+      await link.save();
+
       res
         .status(200)
         .json(new Response(200, 'sucesso', { url: link.originalUrl }));
@@ -30,11 +33,15 @@ class LinkController {
 
   async store(req, res) {
     try {
-      const { originalUrl } = req.body;
+      const { originalUrl, saved } = req.body;
 
       const shortenedUrl = generateShort(5);
 
-      const link = await Link.create({ originalUrl, shortenedUrl });
+      const link = await Link.create({
+        originalUrl,
+        shortenedUrl,
+        saved: saved,
+      });
 
       return res.status(201).json(new Response(201, 'sucesso', link));
     } catch (err) {
