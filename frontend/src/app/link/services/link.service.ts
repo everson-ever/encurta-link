@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from 'src/app/shared/services/api.service';
-import { Link } from '../model/Link';
+import { LinkPost } from '../model/LinkPost';
 
 @Injectable({
 	providedIn: 'root'
@@ -14,7 +14,7 @@ export class LinkService {
 		return this.http.get(`${this.apiService.getUrl()}/links/${short}`);
 	}
 
-	public store(link: Link): Observable<any> {
-		return this.http.post(`${this.apiService.getUrl()}/links`, link);
+	public store(link: LinkPost): Observable<any> {
+		return this.http.post<any>(`${this.apiService.getUrl()}/links`, link);
 	}
 }
