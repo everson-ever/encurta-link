@@ -14,6 +14,7 @@ export class GenerateLinkComponent implements OnInit {
   public generating = false;
   public url = "";
   public textCopy = false;
+  public saveLink: boolean;
 
   constructor(
     private linkService: LinkService,

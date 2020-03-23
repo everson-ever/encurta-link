@@ -12,15 +12,37 @@
             #short
             [(ngModel)]="link.originalUrl"
           />
-          <div class="text-right">
-            <button
-              type="submit"
-              class="btn btn-secondary btn-lg"
-              data-toggle="modal"
-              data-target="#modalLink"
-            >
-              {{ generating ? "Gerando..." : "Gerar link" }}
-            </button>
+          <div class="form-row">
+            <div class="col">
+              <div class="custom-control custom-checkbox">
+                <input
+                  checked
+                  type="checkbox"
+                  class="custom-control-input"
+                  id="customCheck1"
+                  data-toggle="tooltip"
+                  data-placement="input"
+                  title="Tooltip on bottom"
+                  name="save"
+                  [(ngModel)]="saveLink"
+                />
+                <label class="custom-control-label" for="customCheck1"
+                  >Salvar para todos</label
+                >
+              </div>
+            </div>
+            <div class="col">
+              <div class="text-right">
+                <button
+                  type="submit"
+                  class="btn btn-secondary btn-lg"
+                  data-toggle="modal"
+                  data-target="#modalLink"
+                >
+                  {{ generating ? "Gerando..." : "Gerar link" }}
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </form>
