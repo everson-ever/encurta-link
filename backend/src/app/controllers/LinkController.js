@@ -12,7 +12,7 @@ class LinkController {
 			});
 			return res.status(200).json(new Response(200, 'sucesso', links));
 		} catch (err) {
-			console.log(err.message);
+			return res.status(500).json(new Response(500, err.message, null));
 		}
 	}
 
@@ -24,12 +24,16 @@ class LinkController {
 				where: { shortenedUrl: short }
 			});
 
+			if (!link) {
+				res.status(404).json(new Response(404, 'recurso não encontrado', null));
+			}
+
 			await link.views++;
 			await link.save();
 
 			res.status(200).json(new Response(200, 'sucesso', { url: link.originalUrl }));
 		} catch (err) {
-			console.log(err);
+			return res.status(500).json(new Response(500, err.message, null));
 		}
 	}
 
@@ -47,7 +51,29 @@ class LinkController {
 
 			return res.status(201).json(new Response(201, 'sucesso', link));
 		} catch (err) {
-			console.log(err);
+			return res.status(500).json(new Response(500, err.message, null));
+		}
+	}
+
+	async destroy(req, res) {
+		try {
+			const { id } = req.params;
+
+			const link = await Link.findOne({
+				where: {
+					id: id
+				}
+			});
+
+			if (!link) {
+				res.status(404).json(new Response(404, 'recurso não encontrado', null));
+			}
+
+			await link.destroy();
+
+			res.status(201).json(new Response(201, 'sucesso', null));
+		} catch (err) {
+			return res.status(500).json(new Response(500, err.message, null));
 		}
 	}
 }
