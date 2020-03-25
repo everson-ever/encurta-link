@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from 'src/app/shared/services/api.service';
-import { LinkPost } from '../model/LinkPost';
+import { LinkPost } from '../../../data/models/LinkPost';
 
 @Injectable({
 	providedIn: 'root'
