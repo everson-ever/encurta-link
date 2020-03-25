@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Link } from 'src/app/link/model/Link';
 import { ApiService } from '../../services/api.service';
+import { Link } from 'src/app/modules/link/model/Link';
 
 @Component({
 	selector: 'app-table-links',

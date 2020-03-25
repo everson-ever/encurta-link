@@ -4,8 +4,13 @@ import { GenerateLinkComponent } from './components/generate-link/generate-link.
 import { OpenShortLinkComponent } from './components/open-short-link/open-short-link.component';
 
 const routes: Routes = [
-	{ path: '', component: GenerateLinkComponent },
-	{ path: ':short', component: OpenShortLinkComponent }
+	{
+		path: '',
+		children: [
+			{ path: '', component: GenerateLinkComponent },
+			{ path: ':short', component: OpenShortLinkComponent }
+		]
+	}
 ];
 
 @NgModule({
