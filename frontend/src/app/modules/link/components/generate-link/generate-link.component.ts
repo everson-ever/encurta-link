@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ApiService } from 'src/app/shared/services/api.service';
-import { Link } from '../../model/Link';
-import { LinkPost } from '../../model/LinkPost';
-import { Response } from '../../model/Response';
+import { LinkPost } from '../../../../data/models/LinkPost';
+import { Response } from '../../../../data/models/Response';
 import { LinkService } from '../../services/link.service';
+import { Link } from '../../../../data/models/Link';
 
 @Component({
 	selector: 'app-generate-link',
@@ -37,8 +37,6 @@ export class GenerateLinkComponent implements OnInit {
 			this.generating = false;
 			this.link = response.body;
 			this.url = `${this.apiService.getOwnUrl()}/url/${this.link.shortenedUrl}`;
-
-			form.reset();
 		});
 	}
 
