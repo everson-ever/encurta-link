@@ -36,7 +36,7 @@ export class GenerateLinkComponent implements OnInit {
 		this.linkService.store(this.linkPost).subscribe((response: Response) => {
 			this.generating = false;
 			this.link = response.body;
-			this.url = `${this.apiService.getOwnUrl()}/${this.link.shortenedUrl}`;
+			this.url = `${this.apiService.getOwnUrl()}/url/${this.link.shortenedUrl}`;
 
 			form.reset();
 		});

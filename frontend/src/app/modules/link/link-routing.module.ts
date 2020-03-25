@@ -8,7 +8,7 @@ const routes: Routes = [
 		path: '',
 		children: [
 			{ path: '', component: GenerateLinkComponent },
-			{ path: ':short', component: OpenShortLinkComponent }
+			{ path: 'url/:short', component: OpenShortLinkComponent }
 		]
 	}
 ];
