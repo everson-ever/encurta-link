@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ApiService } from 'src/app/shared/services/api.service';
 import { LinkPost } from '../../../../data/models/LinkPost';
 import { Response } from '../../../../data/models/Response';
-import { LinkService } from '../../services/link.service';
+import { LinkService } from '../../../../data/services/link.service';
 import { Link } from '../../../../data/models/Link';
 
 @Component({

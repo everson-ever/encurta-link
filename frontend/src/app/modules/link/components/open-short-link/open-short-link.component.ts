@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { LinkService } from '../../services/link.service';
+import { LinkService } from '../../../../data/services/link.service';
 
 @Component({
 	selector: 'app-open-short-link',
